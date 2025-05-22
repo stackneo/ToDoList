@@ -1,0 +1,15 @@
+nav {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  padding-inline: 16px;
+  padding-block: 8px;
+  justify-content: center;
+  gap: 250px;
+  color: white;
+  background-color: #333;
+  font-size: 1.5em;
+}
+
+
+
