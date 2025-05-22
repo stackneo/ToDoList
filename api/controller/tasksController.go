@@ -95,7 +95,7 @@ func TasksUpdate(c *gin.Context) {
 		StartDate:   body.StartDate,
 		EndDate:     body.EndDate,
 		Status:      body.Status})
-	
+
 	c.JSON(http.StatusOK, gin.H{
 		"Task updated": task,
 	})
