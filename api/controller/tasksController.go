@@ -5,6 +5,7 @@ import (
 	"ToDoList/initalizers"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"time"
 )
 
 func init() {
@@ -17,13 +18,16 @@ func TasksCreate(c *gin.Context) {
 	var body struct {
 		Name        string
 		Description string
-		StartDate   string
-		EndDate     string
+		StartDate   time.Time
+		EndDate     time.Time
 		Status      string
 	}
 
 	// Serialises it as JSON
-	c.Bind(&body)
+	if err := c.ShouldBind(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
 	// Creates new struct for the task
 	task := entity.Task{Name: body.Name, Description: body.Description, StartDate: body.StartDate, EndDate: body.EndDate, Status: body.Status}
@@ -73,8 +77,8 @@ func TasksUpdate(c *gin.Context) {
 	var body struct {
 		Name        string
 		Description string
-		StartDate   string
-		EndDate     string
+		StartDate   time.Time
+		EndDate     time.Time
 		Status      string
 	}
 

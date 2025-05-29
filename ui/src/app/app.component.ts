@@ -11,11 +11,12 @@ import {HeaderComponent} from './components/header/header.component';
       <router-outlet></router-outlet>
     </main>
   `,
-  styles: [ `
+  styles: [`
     main {
       padding: 16px;
     }
   `],
+  standalone: true
 })
 export class AppComponent {
   title = 'ui';

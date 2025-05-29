@@ -1,1 +1,17 @@
-<p>todos works!</p>
+@if (todoItems()) {
+  <p>You have the following tasks:</p>
+ <ul>
+   <!-- Loops through all tasks and displays it -->
+    <li *ngFor="let item of todoItems()">
+      {{item.name}}
+      {{item.description}}
+      {{item.startDate}}
+      {{item.endDate}}
+      {{item.status}}
+      <button (click)="deleteTask(item.id!)">Delete</button>
+      <button routerLink="/editTask" (click)="editTask(item)">Edit</button>
+    </li>
+  </ul>
+} @else {
+  <p>You currently have no tasks. Want to add some?</p>
+}

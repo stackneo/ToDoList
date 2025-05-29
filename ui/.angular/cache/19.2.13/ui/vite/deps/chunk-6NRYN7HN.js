@@ -1,7 +1,14 @@
 import {
+  DOCUMENT,
+  XhrFactory,
+  isPlatformServer,
+  parseCookieValue
+} from "./chunk-JJGPFT3O.js";
+import {
   APP_BOOTSTRAP_LISTENER,
   ApplicationRef,
   Console,
+  DestroyRef,
   EnvironmentInjector,
   Inject,
   Injectable,
@@ -9,69 +16,45 @@ import {
   Injector,
   NgModule,
   NgZone,
-  Observable,
   PLATFORM_ID,
   PendingTasksInternal,
   ResourceImpl,
   ResourceStatus,
   RuntimeError,
   TransferState,
-  __async,
-  __objRest,
-  __spreadValues,
   assertInInjectionContext,
   computed,
-  concatMap,
-  filter,
-  finalize,
   formatRuntimeError,
-  from,
   inject,
   linkedSignal,
   makeEnvironmentProviders,
   makeStateKey,
-  map,
-  of,
   performanceMarkFeature,
   runInInjectionContext,
   setClassMetadata,
   signal,
-  switchMap,
-  tap,
   truncateMiddle,
   ɵɵdefineInjectable,
   ɵɵdefineInjector,
   ɵɵdefineNgModule,
   ɵɵinject
-} from "./chunk-CP6FORRH.js";
+} from "./chunk-46PG27ZX.js";
+import {
+  Observable,
+  __async,
+  __objRest,
+  __spreadValues,
+  concatMap,
+  filter,
+  finalize,
+  from,
+  map,
+  of,
+  switchMap,
+  tap
+} from "./chunk-S35MAB2V.js";
 
-// node_modules/@angular/common/fesm2022/xhr-BfNfxNDv.mjs
-function parseCookieValue(cookieStr, name) {
-  name = encodeURIComponent(name);
-  for (const cookie of cookieStr.split(";")) {
-    const eqIndex = cookie.indexOf("=");
-    const [cookieName, cookieValue] = eqIndex == -1 ? [cookie, ""] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)];
-    if (cookieName.trim() === name) {
-      return decodeURIComponent(cookieValue);
-    }
-  }
-  return null;
-}
-var PLATFORM_BROWSER_ID = "browser";
-var PLATFORM_SERVER_ID = "server";
-function isPlatformBrowser(platformId) {
-  return platformId === PLATFORM_BROWSER_ID;
-}
-function isPlatformServer(platformId) {
-  return platformId === PLATFORM_SERVER_ID;
-}
-var XhrFactory = class {
-};
-
-// node_modules/@angular/common/fesm2022/dom_tokens-rA0ACyx7.mjs
-var DOCUMENT = new InjectionToken(ngDevMode ? "DocumentToken" : "");
-
-// node_modules/@angular/common/fesm2022/module-BQ-7fJZl.mjs
+// node_modules/@angular/common/fesm2022/module-z3bvLlVg.mjs
 var HttpHandler = class {
 };
 var HttpBackend = class {
@@ -1258,7 +1241,13 @@ var FetchBackend = class _FetchBackend {
     optional: true
   })?.fetch ?? ((...args) => globalThis.fetch(...args));
   ngZone = inject(NgZone);
-  appRef = inject(ApplicationRef);
+  destroyRef = inject(DestroyRef);
+  destroyed = false;
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.destroyed = true;
+    });
+  }
   handle(request) {
     return new Observable((observer) => {
       const aborter = new AbortController();
@@ -1315,7 +1304,7 @@ var FetchBackend = class _FetchBackend {
         let canceled = false;
         yield this.ngZone.runOutsideAngular(() => __async(this, null, function* () {
           while (true) {
-            if (this.appRef.destroyed) {
+            if (this.destroyed) {
               yield reader.cancel();
               canceled = true;
               break;
@@ -1441,7 +1430,7 @@ var FetchBackend = class _FetchBackend {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FetchBackend, [{
     type: Injectable
-  }], null, null);
+  }], () => [], null);
 })();
 var FetchFactory = class {
 };
@@ -2527,12 +2516,6 @@ function appendMissingHeadersDetection(url, headers, headersToInclude) {
 }
 
 export {
-  parseCookieValue,
-  PLATFORM_BROWSER_ID,
-  isPlatformBrowser,
-  isPlatformServer,
-  XhrFactory,
-  DOCUMENT,
   HttpHandler,
   HttpBackend,
   HttpHeaders,
@@ -2575,14 +2558,12 @@ export {
 };
 /*! Bundled license information:
 
-@angular/common/fesm2022/xhr-BfNfxNDv.mjs:
-@angular/common/fesm2022/dom_tokens-rA0ACyx7.mjs:
-@angular/common/fesm2022/module-BQ-7fJZl.mjs:
+@angular/common/fesm2022/module-z3bvLlVg.mjs:
 @angular/common/fesm2022/http.mjs:
   (**
-   * @license Angular v19.2.12
+   * @license Angular v19.2.13
    * (c) 2010-2025 Google LLC. https://angular.io/
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-IAQGXU5N.js.map
+//# sourceMappingURL=chunk-6NRYN7HN.js.map

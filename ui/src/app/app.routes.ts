@@ -12,6 +12,18 @@ export const routes: Routes = [{
     path: 'todos',
     loadComponent: () => {
       return import('./todos/todos.component').then(m => m.TodosComponent);
-    }
-  }
+    },
+  },
+  {
+    path: 'addTask',
+    loadComponent: () => {
+      return import('./components/task-form/task-form.component').then(m => m.TaskFormComponent);
+    },
+  },
+  {
+    path: 'editTask',
+    loadComponent: () => {
+      return import('./components/task-form/task-form.component').then(m => m.TaskFormComponent);
+    },
+  },
 ];

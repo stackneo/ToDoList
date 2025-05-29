@@ -1,0 +1,25 @@
+<!-- Task Form -->
+<form [formGroup]="newTask" (ngSubmit)="onSubmit()">
+  <h2>{{isUpdate() ? 'Update Task' : 'Assign Task'}}</h2>
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+  <label>
+    Description:
+    <input type="text" formControlName="description">
+  </label>
+  <label>
+    Start Date:
+    <input type="date" formControlName="startDate">
+  </label>
+  <label>
+    End Date:
+    <input type="date" formControlName="endDate">
+  </label>
+  <label>
+    Status:
+    <input type="text" formControlName="status">
+  </label>
+  <button type="submit">{{isUpdate() ? 'Update Task' : 'Assign Task'}}</button>
+</form>

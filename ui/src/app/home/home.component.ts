@@ -10,7 +10,4 @@ import {GreetingComponent} from '../components/greeting/greeting.component';
 export class HomeComponent {
   welcomeMessage = signal('Welcome to the To Do List app!')
 
-  keyUpHandler(event: KeyboardEvent) {
-    console.log(`User pressed the ${event.key} key`);
-  }
 }
